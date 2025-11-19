@@ -145,3 +145,11 @@ predict.tensor.reg <- function(object, x.new, z.new, scale=TRUE, ...) {
 predict_tensor_reg <- function(fit, x.new, z.new, scale=TRUE) {
   predict(fit, x.new, z.new, scale=scale)
 }
+
+#' root-mean-square error (RMSE)
+#'
+#' @param a Predicted values.
+#' @param b True observed values.
+#' @return RMSE value.
+#' @export
+rmse <- function(a, b) sqrt(mean((a-b)^2))
