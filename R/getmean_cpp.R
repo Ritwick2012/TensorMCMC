@@ -13,3 +13,4 @@
 getmean_cpp <- function(X_vec, beta, n, p, d, rank) {
   .Call(`_TensorMCMC_getmean_cpp`, X_vec, beta, n, p, d, rank)
 }
+
