@@ -15,3 +15,4 @@ importFrom(stats,predict)
 importFrom(stats,rnorm)
 importFrom(stats,sd)
 useDynLib(TensorMCMC, .registration = TRUE)
+
