@@ -132,3 +132,16 @@ predict.tensor.reg <- function(object, x.new, z.new, scale=TRUE, ...) {
 
   return(pred)
 }
+
+#' Predict tensor regression (wrapper)
+#'
+#' @param fit tensor.reg object
+#' @param x.new new tensor predictors
+#' @param z.new new scalar covariates
+#' @param scale Logical; whether to scale predictors
+#' @return Predicted response vector
+#' @export
+#' @importFrom stats predict
+predict_tensor_reg <- function(fit, x.new, z.new, scale=TRUE) {
+  predict(fit, x.new, z.new, scale=scale)
+}
