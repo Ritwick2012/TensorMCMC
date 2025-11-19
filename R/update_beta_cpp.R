@@ -12,3 +12,4 @@
 update_beta_cpp <- function(beta, p, d, rank, sigma) {
   .Call(`_TensorMCMC_update_beta_cpp`, beta, p, d, rank, sigma)
 }
+
