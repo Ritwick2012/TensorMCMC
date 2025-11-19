@@ -204,3 +204,4 @@ cv.tensor.reg <- function(x.train, z.train, y.train, ranks=1:3, nsweep=50){
   }
   data.frame(rank=ranks, RMSE=out)
 }
+
