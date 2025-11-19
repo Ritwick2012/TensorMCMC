@@ -14,5 +14,3 @@
 predict_tensor_cpp <- function(X_vec, beta, gam, n, p, d, rank) {
   .Call(`_TensorMCMC_predict_tensor_cpp`, X_vec, beta, gam, n, p, d, rank)
 }
-
-
