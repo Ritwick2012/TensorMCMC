@@ -162,3 +162,26 @@ rmse <- function(a, b) sqrt(mean((a-b)^2))
 #' @return A numeric vector of inverse-gamma samples.
 #' @export
 rigamma <- function(n, shape, rate) 1 / stats::rgamma(n, shape, rate)
+
+#' posterior mean for tensor regression
+#'
+#' @param X Input tensor.
+#' @param beta Estimated coefficient tensor.
+#' @param rank Rank used in tensor decomposition.
+#' @param rank.exclude Optional rank values to exclude.
+#' @return Mean tensor.
+#' @export
+getmean <- function(X, beta, rank, rank.exclude=NULL) {
+  idx <- setdiff(1:rank, rank.exclude)
+  mu.B <- numeric(dim(X)[1])
+  for(i in 1:dim(X)[1]){
+    Bsum <- 0
+    for(r in idx){
+      B <- as.vector(beta[[r]])
+      Xvec <- as.vector(X[i,,])
+      Bsum <- Bsum + sum(Xvec * B)
+    }
+    mu.B[i] <- Bsum
+  }
+  return(mu.B)
+}
