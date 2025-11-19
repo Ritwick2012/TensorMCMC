@@ -153,3 +153,12 @@ predict_tensor_reg <- function(fit, x.new, z.new, scale=TRUE) {
 #' @return RMSE value.
 #' @export
 rmse <- function(a, b) sqrt(mean((a-b)^2))
+
+#' Inverse-gamma random number generator
+#'
+#' @param n Number of samples.
+#' @param shape Shape parameter of the gamma distribution.
+#' @param rate Rate parameter of the gamma distribution.
+#' @return A numeric vector of inverse-gamma samples.
+#' @export
+rigamma <- function(n, shape, rate) 1 / stats::rgamma(n, shape, rate)
