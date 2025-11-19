@@ -185,3 +185,22 @@ getmean <- function(X, beta, rank, rank.exclude=NULL) {
   }
   return(mu.B)
 }
+
+#' Cross-validation for tensor regression
+#'
+#' @param x.train Training tensor X data.
+#' @param z.train Training scalar covariates.
+#' @param y.train Training response vector.
+#' @param ranks A vector of rank values to test.
+#' @param nsweep Number of MCMC sweeps / iterations.
+#' @return A data.frame containing the best rank and RMSE performance.
+#' @export
+cv.tensor.reg <- function(x.train, z.train, y.train, ranks=1:3, nsweep=50){
+  out <- numeric(length(ranks))
+  for(i in seq_along(ranks)){
+    fit <- tensor.reg(z.train, x.train, y.train, nsweep=nsweep, rank=ranks[i])
+    pred <- predict.tensor.reg(fit, x.train, z.train)
+    out[i] <- rmse(y.train, pred)
+  }
+  data.frame(rank=ranks, RMSE=out)
+}
