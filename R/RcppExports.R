@@ -12,4 +12,3 @@ update_beta_cpp <- function(beta, p, d, rank, sigma) {
 predict_tensor_cpp <- function(X_vec, beta, gam, n, p, d, rank) {
     .Call(`_TensorMCMC_predict_tensor_cpp`, X_vec, beta, gam, n, p, d, rank)
 }
-
