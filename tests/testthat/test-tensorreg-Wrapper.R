@@ -106,3 +106,12 @@ test_that("getmean works for rank 1", {
   expect_type(mu, "double")
   expect_length(mu, n)
 })
+
+# Test 11: update_beta_cpp changes values
+test_that("update_beta_cpp modifies beta matrices", {
+  beta_list <- replicate(2, list(matrix(0, p, d)))
+  beta_updated <- update_beta_cpp(beta_list, p, d, rank=2, sigma=0.01)
+
+  expect_equal(length(beta_updated), length(beta_list))
+  expect_false(all(unlist(beta_updated) == 0))
+})
