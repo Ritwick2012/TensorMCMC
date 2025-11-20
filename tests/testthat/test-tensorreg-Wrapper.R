@@ -33,3 +33,12 @@ test_that("predict_tensor_reg returns numeric vector of correct length", {
   expect_type(pred, "double")
   expect_length(pred, n)
 })
+
+# Test 3: getmean returns correct output
+test_that("getmean returns numeric vector of correct length", {
+  beta_list <- replicate(2, list(matrix(rnorm(p*d), p, d)))
+  mu <- getmean(x, beta_list, rank = 2)
+
+  expect_type(mu, "double")
+  expect_length(mu, n)
+})
