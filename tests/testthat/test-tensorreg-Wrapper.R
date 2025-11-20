@@ -97,3 +97,12 @@ test_that("predict.tensor.reg gives reasonable values", {
   expect_length(pred, n)
   expect_false(any(is.na(pred)))
 })
+
+# Test 10: getmean works for rank 1
+test_that("getmean works for rank 1", {
+  beta_list <- replicate(1, list(matrix(rnorm(p*d), p, d)))
+  mu <- getmean(x, beta_list, rank = 1)
+
+  expect_type(mu, "double")
+  expect_length(mu, n)
+})
