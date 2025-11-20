@@ -24,5 +24,12 @@ test_that("tensor.reg returns correct structure", {
   expect_equal(dim(fit$gam.store), c(5, pgamma))
 })
 
+# Test 2: predict tensor reg returns numeric vector
+test_that("predict_tensor_reg returns numeric vector of correct length", {
+  fit <- tensor.reg(z, x, y, nsweep = 5, rank = 2)
 
+  pred <- predict_tensor_reg(fit, x, z)
 
+  expect_type(pred, "double")
+  expect_length(pred, n)
+})
