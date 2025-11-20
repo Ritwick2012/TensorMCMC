@@ -147,3 +147,13 @@ test_that("tensor.reg works for large data", {
   expect_equal(dim(fit$beta.store), c(3, 2, p, d))
   expect_equal(dim(fit$gam.store), c(3, pgamma))
 })
+
+# Test 14: predict.tensor.reg works for large data
+test_that("predict.tensor.reg works for large data", {
+  fit <- tensor.reg(z_large, x_large, y_large, nsweep = 3, rank = 2)
+  pred <- predict_tensor_reg(fit, x_large, z_large)
+
+  expect_type(pred, "double")
+  expect_length(pred, n_large)
+  expect_false(any(is.na(pred)))
+})
