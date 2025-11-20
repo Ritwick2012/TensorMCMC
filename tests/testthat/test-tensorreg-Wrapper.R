@@ -87,3 +87,13 @@ test_that("tensor.reg works without scaling", {
   expect_s3_class(fit, "tensor.reg")
   expect_equal(dim(fit$beta.store), c(3, 2, p, d))
 })
+
+# Test 9: predict.tensor.reg returns reasonable values
+test_that("predict.tensor.reg gives reasonable values", {
+  fit <- tensor.reg(z, x, y, nsweep = 5, rank = 2)
+  pred <- predict.tensor.reg(fit, x, z)
+
+  expect_type(pred, "double")
+  expect_length(pred, n)
+  expect_false(any(is.na(pred)))
+})
