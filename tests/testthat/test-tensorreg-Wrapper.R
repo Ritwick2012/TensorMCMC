@@ -61,3 +61,13 @@ test_that("rigamma returns numeric vector of correct length", {
   expect_length(val, 5)
   expect_true(all(val > 0))
 })
+
+# Test 6: cv.tensor.reg returns data frame with RMSE
+test_that("cv.tensor.reg returns data frame of correct structure", {
+  cvres <- cv.tensor.reg(x, z, y, ranks = 1:2, nsweep = 3)
+
+  expect_s3_class(cvres, "data.frame")
+  expect_equal(names(cvres), c("rank", "RMSE"))
+  expect_equal(nrow(cvres), 2)
+  expect_true(all(cvres$RMSE >= 0))
+})
