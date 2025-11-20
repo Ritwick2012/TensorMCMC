@@ -42,3 +42,13 @@ test_that("getmean returns numeric vector of correct length", {
   expect_type(mu, "double")
   expect_length(mu, n)
 })
+
+# Test 4: rmse works correctly
+test_that("rmse returns correct value", {
+  a <- rnorm(10)
+  b <- a + rnorm(10, 0, 0.1)
+  val <- rmse(a, b)
+
+  expect_type(val, "double")
+  expect_true(val >= 0)
+})
