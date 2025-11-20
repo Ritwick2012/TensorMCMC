@@ -71,3 +71,11 @@ test_that("cv.tensor.reg returns data frame of correct structure", {
   expect_equal(nrow(cvres), 2)
   expect_true(all(cvres$RMSE >= 0))
 })
+
+# Test 7: tensor.reg works with rank 1
+test_that("tensor.reg works with rank 1", {
+  fit <- tensor.reg(z, x, y, nsweep = 4, rank = 1)
+
+  expect_s3_class(fit, "tensor.reg")
+  expect_equal(dim(fit$beta.store), c(4, 1, p, d))
+})
