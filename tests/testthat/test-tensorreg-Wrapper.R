@@ -157,3 +157,13 @@ test_that("predict.tensor.reg works for large data", {
   expect_length(pred, n_large)
   expect_false(any(is.na(pred)))
 })
+
+# Test 15: cv.tensor.reg works for large data
+test_that("cv.tensor.reg works for large data", {
+  cvres <- cv.tensor.reg(x_large, z_large, y_large, ranks = 1:2, nsweep = 2)
+
+  expect_s3_class(cvres, "data.frame")
+  expect_equal(names(cvres), c("rank", "RMSE"))
+  expect_equal(nrow(cvres), 2)
+  expect_true(all(cvres$RMSE >= 0))
+})
