@@ -52,3 +52,12 @@ test_that("rmse returns correct value", {
   expect_type(val, "double")
   expect_true(val >= 0)
 })
+
+# Test 5: rigamma returns numeric vector
+test_that("rigamma returns numeric vector of correct length", {
+  val <- rigamma(5, shape = 2, rate = 1)
+
+  expect_type(val, "double")
+  expect_length(val, 5)
+  expect_true(all(val > 0))
+})
