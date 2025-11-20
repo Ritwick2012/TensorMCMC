@@ -176,3 +176,10 @@ test_that("update_beta_cpp modifies beta matrices for large rank", {
   expect_equal(length(beta_updated), length(beta_list))
   expect_false(all(unlist(beta_updated) == 0))
 })
+
+# Test 17: tensor.reg output has no NA/Inf
+test_that("tensor.reg output has no NA or Inf", {
+  fit <- tensor.reg(z, x, y, nsweep = 3, rank = 2)
+  expect_false(any(is.na(unlist(fit))))
+  expect_false(any(is.infinite(unlist(fit))))
+})
