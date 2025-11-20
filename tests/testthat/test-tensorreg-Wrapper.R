@@ -115,3 +115,13 @@ test_that("update_beta_cpp modifies beta matrices", {
   expect_equal(length(beta_updated), length(beta_list))
   expect_false(all(unlist(beta_updated) == 0))
 })
+
+# Test 12: tensor.reg works with different scaling options
+test_that("tensor.reg works with scale TRUE/FALSE", {
+  fit_scale <- tensor.reg(z, x, y, nsweep = 3, rank=2, scale = TRUE)
+  fit_noscale <- tensor.reg(z, x, y, nsweep = 3, rank=2, scale = FALSE)
+
+  expect_s3_class(fit_scale, "tensor.reg")
+  expect_s3_class(fit_noscale, "tensor.reg")
+  expect_equal(dim(fit_scale$beta.store), dim(fit_noscale$beta.store))
+})
