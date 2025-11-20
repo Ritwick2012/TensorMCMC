@@ -79,3 +79,11 @@ test_that("tensor.reg works with rank 1", {
   expect_s3_class(fit, "tensor.reg")
   expect_equal(dim(fit$beta.store), c(4, 1, p, d))
 })
+
+# Test 8: tensor.reg works without scaling
+test_that("tensor.reg works without scaling", {
+  fit <- tensor.reg(z, x, y, nsweep = 3, rank = 2, scale = FALSE)
+
+  expect_s3_class(fit, "tensor.reg")
+  expect_equal(dim(fit$beta.store), c(3, 2, p, d))
+})
