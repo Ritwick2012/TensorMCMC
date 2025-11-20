@@ -167,3 +167,12 @@ test_that("cv.tensor.reg works for large data", {
   expect_equal(nrow(cvres), 2)
   expect_true(all(cvres$RMSE >= 0))
 })
+
+# Test 16: update_beta_cpp changes values for large beta
+test_that("update_beta_cpp modifies beta matrices for large rank", {
+  beta_list <- replicate(2, list(matrix(0, p, d)))
+  beta_updated <- update_beta_cpp(beta_list, p, d, rank = 2, sigma = 0.01)
+
+  expect_equal(length(beta_updated), length(beta_list))
+  expect_false(all(unlist(beta_updated) == 0))
+})
