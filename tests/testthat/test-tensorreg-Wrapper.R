@@ -125,3 +125,25 @@ test_that("tensor.reg works with scale TRUE/FALSE", {
   expect_s3_class(fit_noscale, "tensor.reg")
   expect_equal(dim(fit_scale$beta.store), dim(fit_noscale$beta.store))
 })
+
+# example 2 (Large Data)
+
+set.seed(597)
+
+n_large <- 1000
+p <- 4
+d <- 3
+pgamma <- 2
+
+x_large <- array(rnorm(n_large*p*d), dim = c(n_large, p, d))
+z_large <- matrix(rnorm(n_large*pgamma), n_large, pgamma)
+y_large <- rnorm(n_large)
+
+# Test 13: tensor.reg works for large data
+test_that("tensor.reg works for large data", {
+  fit <- tensor.reg(z_large, x_large, y_large, nsweep = 3, rank = 2)
+
+  expect_s3_class(fit, "tensor.reg")
+  expect_equal(dim(fit$beta.store), c(3, 2, p, d))
+  expect_equal(dim(fit$gam.store), c(3, pgamma))
+})
