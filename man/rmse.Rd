@@ -17,4 +17,3 @@ RMSE value.
 \description{
 root-mean-square error (RMSE)
 }
-
