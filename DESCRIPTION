@@ -1,12 +1,13 @@
 Package: TensorMCMC
 Type: Package
-Title: Bayesian Tensor Regression with MCMC Updates
+Title: Tensor Regression with Stochastic Low-Rank Updates
 Version: 0.1.0
-Date: 2025-11-18
+Date: 2025-12-07
 Authors@R: person("Ritwick", "Mondal", email = "ritwick12@tamu.edu", role = c("aut", "cre"))
 Maintainer: Ritwick Mondal <ritwick12@tamu.edu>
-Description: Implements bayesian style tensor regression for tensor predictors and 
-    scalar covariates with MCMC updates, C++ acceleration, prediction, and cross-validation utilities.
+Description: Implements low-rank tensor regression for tensor predictors and scalar covariates
+            using random-walk stochastic updates. Includes C++ acceleration for coefficient
+            updates and prediction, as well as utilities for cross-validation and error metrics.
 Imports: 
     Rcpp (>= 1.0.10),
     glmnet,
@@ -15,8 +16,10 @@ LinkingTo: Rcpp
 Encoding: UTF-8
 LazyData: true
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 RoxygenNote: 7.3.3
 License: MIT + file LICENSE
-
+VignetteBuilder: knitr
