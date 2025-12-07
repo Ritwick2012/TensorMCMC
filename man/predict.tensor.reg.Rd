@@ -23,3 +23,4 @@ Predicted response vector
 \description{
 Prediction from tensor regression (S3 method)
 }
+
