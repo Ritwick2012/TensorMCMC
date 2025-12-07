@@ -21,11 +21,11 @@ tensor.reg(
 
 \item{y.train}{Response vector (length n)}
 
-\item{nsweep}{Number of MCMC sweeps (default 50)}
+\item{nsweep}{Number of stochastic update iterations (default 50)}
 
 \item{rank}{Rank of tensor decomposition (default 2)}
 
-\item{scale}{Logical; whether to scale predictors and response (default TRUE)}
+\item{scale}{whether to scale predictors and response (default TRUE)}
 
 \item{alpha.lasso}{LASSO tuning parameter for initial estimate (default 1)}
 }
@@ -33,5 +33,5 @@ tensor.reg(
 A list with beta.store, gam.store, rank, p, d, and scaling info
 }
 \description{
-Bayesian-like tensor regression with MCMC-style updates.
+Low-rank tensor regression with stochastic updates
 }
