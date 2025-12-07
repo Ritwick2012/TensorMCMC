@@ -23,5 +23,5 @@ getmean_cpp(X_vec, beta, n, p, d, rank)
 Numeric vector of length n
 }
 \description{
-Calls `getmean_cpp` to compute the posterior mean from tensor X and beta list.
+This function calls `getmean_cpp` to compute the posterior mean from tensor X and beta list.
 }
