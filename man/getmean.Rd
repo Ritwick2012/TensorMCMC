@@ -21,3 +21,4 @@ Mean tensor.
 \description{
 posterior mean for tensor regression
 }
+
