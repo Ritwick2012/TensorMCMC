@@ -2,7 +2,7 @@
 % Please edit documentation in R/tensorreg_Wrapper.R
 \name{cv.tensor.reg}
 \alias{cv.tensor.reg}
-\title{Cross-validation for tensor regression}
+\title{Simple rank comparison via in-sample RMSE}
 \usage{
 cv.tensor.reg(x.train, z.train, y.train, ranks = 1:3, nsweep = 50)
 }
@@ -13,13 +13,13 @@ cv.tensor.reg(x.train, z.train, y.train, ranks = 1:3, nsweep = 50)
 
 \item{y.train}{Training response vector.}
 
-\item{ranks}{A vector of rank values to test.}
+\item{ranks}{Vector of rank values to test.}
 
-\item{nsweep}{Number of MCMC sweeps / iterations.}
+\item{nsweep}{Number of stochastic update iterations.}
 }
 \value{
-A data.frame containing the best rank and RMSE performance.
+A data.frame with ranks and corresponding in-sample RMSE.
 }
 \description{
-Cross-validation for tensor regression
+Simple rank comparison via in-sample RMSE
 }
