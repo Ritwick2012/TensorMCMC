@@ -2,12 +2,12 @@
 % Please edit documentation in R/update_beta_cpp.R
 \name{update_beta_cpp}
 \alias{update_beta_cpp}
-\title{Update Beta Matrices Using C++ MCMC Step}
+\title{Update Beta Matrices Using C++ Random Walk}
 \usage{
 update_beta_cpp(beta, p, d, rank, sigma)
 }
 \arguments{
-\item{beta}{List of p×d matrices (one per rank)}
+\item{beta}{List of p×d matrices (length = rank)}
 
 \item{p}{Number of rows in each beta matrix}
 
@@ -21,5 +21,5 @@ update_beta_cpp(beta, p, d, rank, sigma)
 Updated list of beta matrices
 }
 \description{
-Calls the C++ function `update_beta_cpp` to perturb beta matrices.
+This function calls the C++ function `update_beta_cpp` to perturb beta matrices.
 }
