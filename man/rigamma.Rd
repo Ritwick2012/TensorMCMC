@@ -19,3 +19,4 @@ A numeric vector of inverse-gamma samples.
 \description{
 Inverse-gamma random number generator
 }
+
