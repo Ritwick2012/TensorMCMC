@@ -9,7 +9,7 @@ predict_tensor_cpp(X_vec, beta, gam, n, p, d, rank)
 \arguments{
 \item{X_vec}{Flattened tensor (numeric vector of length n*p*d)}
 
-\item{beta}{List of p×d matrices (length = rank)}
+\item{beta}{List of p×d matrices representing tensor coefficients}
 
 \item{gam}{Numeric vector of scalar coefficients}
 
@@ -25,5 +25,7 @@ predict_tensor_cpp(X_vec, beta, gam, n, p, d, rank)
 Numeric vector of length n
 }
 \description{
-Calls `predict_tensor_cpp` to compute predictions from tensor X, beta, and scalar coefficients.
+This function calls the underlying C++ function `predict_tensor_cpp`
+to compute predicted responses given a flattened tensor, low-rank
+coefficient matrices, and scalar covariate coefficients.
 }
