@@ -3,8 +3,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of TensorMCMC is to implement Bayesian style tensor regression for tensor predictors and 
-    scalar covariates with MCMC updates, C++ acceleration, prediction, and cross-validation utilities.
+**TensorMCMC** implements low-rank tensor regression for tensor predictors and scalar covariates using
+simple stochastic updates. It includes fast C++ routines for coefficient updates and prediction, and 
+provides tools for cross-validation and error evaluation.
 
 ## Installation
 
@@ -32,6 +33,10 @@ y.train <- rnorm(n)
 ## Fit the tensor regression model
 fit <- fit_tensor(x.train, z.train, y.train, rank = 2, nsweep = 50)
 
+# Predict on training data
+pred <- predict_tensor_reg(fit, x.train, z.train)
+
+# Calculating RMSE
+rmse_val <- rmse(pred, y.train)
 
 ```
-I have already completed the C++ (Rcpp) implementation and the testing of the package. My next step is to create the package vignette.
