@@ -1,0 +1,95 @@
+---
+title: "TensorMCMC: Introduction and Examples"
+author: "Ritwick Mondal"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{TensorMCMC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+# Introduction
+
+**TensorMCMC** provides low-rank tensor regression for tensor predictors and scalar covariates. 
+The package uses simple stochastic updates (inspired by MCMC) and includes fast C++ acceleration 
+for coefficient updates and predictions.This vignette
+demonstrates how to fit a tensor regression model, make predictions, and evaluate performance
+using cross-validation.
+
+# Installation (GitHub)
+
+install.packages("devtools") 
+devtools::install_github("Ritwick2012/TensorMCMC")
+
+# Load the package 
+
+```{r setup}
+library(TensorMCMC)
+```
+
+# Example
+
+```{r example, echo=TRUE, eval=TRUE}
+set.seed(2026)
+n <- 100   # number of observations
+p <- 7    # first tensor dimension
+d <- 5   # second tensor dimension
+pgamma <- 2 # number of scalar covariates
+
+x <- array(rnorm(n*p*d), dim = c(n,p,d)) #Tensor predictor array
+
+z <- matrix(rnorm(n*pgamma), n, pgamma) #Scalar covariates
+
+y <- rnorm(n) #Response
+```
+
+
+```{r}
+
+## Fitting Tensor Regression
+fit <- tensor.reg(z, x, y, nsweep = 10, rank = 2)
+fit 
+
+## Predictions
+
+pred <- predict_tensor_reg(fit, x, z)
+head(pred)
+
+## Cross-Validation
+
+cv <- cv.tensor.reg(x, z, y, ranks = 1:2, nsweep = 5)
+cv
+
+```
+
+
+```{r plot-pred, fig.width=8, fig.height=6}
+
+## Scatter plot of predicted vs actual
+plot(y, pred, pch = 19, col = "blue",
+     main = "Predicted vs Actual Response",
+     xlab = "Actual y", ylab = "Predicted y")
+abline(a = 0, b = 1, col = "red", lty = 2) 
+
+```
+
+
+```{r scatter-x1-pred, fig.width=8, fig.height=6}
+
+x1 <- x[,1,1]  
+
+## Scatter plot of Predicted vs Tensor Covariate
+plot(x1, pred, pch = 19, col = "purple",
+     main = "Predicted vs Tensor Covariate",
+     xlab = "Tensor Covariate", ylab = "Predicted y")
+abline(lm(pred ~ x1), col = "green", lty = 2) 
+
+```
