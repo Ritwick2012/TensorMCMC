@@ -21,3 +21,4 @@ Predicted response vector
 \description{
 Predict tensor regression (wrapper)
 }
+
